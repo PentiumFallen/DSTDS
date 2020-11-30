@@ -40,9 +40,15 @@ namespace Assets.Scripts.Magazines
 
         public Color shoot()
         {
-            if(mag.Count != 0)
+            if (mag.Count > 0)
+            { 
+                hud.QShoot();
                 return mag.Dequeue();
-            return Color.clear;
+            }
+            else 
+            {
+                return Color.clear;
+            }
         }
     }
 }

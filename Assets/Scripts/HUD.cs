@@ -47,7 +47,7 @@ namespace Assets.Scripts
             Update();
         }
 
-        private void Shoot()
+        public void QShoot()
         {
             // Queue
             if (mode == 1)

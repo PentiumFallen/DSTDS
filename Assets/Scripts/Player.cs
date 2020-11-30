@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -23,10 +24,10 @@ public class Player : MonoBehaviour
     {
         health_score.text = "HP:" + hp + "\nScore:" + score;
         //hud.color = new Color(hud.color.r, hud.color.g, hud.color.b, 255);
-        //if (hp <= 0)
-        //{
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //}
+        if (hp <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
         // WASD or Arrow keys
         //Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));

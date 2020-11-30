@@ -18,9 +18,9 @@ public class Spawner : MonoBehaviour
     {
         if (timeBetweenSpawns<=0)
         {
-            int randPos = Random.Range(0, spawnSpots.Length);
-            Instantiate(enemy, spawnSpots[randPos].position, Quaternion.identity);
-            timeBetweenSpawns = startTimeBetweenSpawns;
+            //int randPos = Random.Range(0, spawnSpots.Length);
+            //Instantiate(enemy, spawnSpots[randPos].position, Quaternion.identity);
+            //timeBetweenSpawns = startTimeBetweenSpawns;
         }
         else
         {

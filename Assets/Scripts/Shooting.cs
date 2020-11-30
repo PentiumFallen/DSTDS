@@ -31,12 +31,13 @@ public class Shooting : MonoBehaviour
             // Just fired
             if (aiming)
             {
-                Color bullet = mag.shoot();
-                if (!bullet.Equals(Color.clear))
+                Color bulletColor = mag.shoot();
+                if (!bulletColor.Equals(Color.clear))
                 {
-                    GameObject shot = Instantiate(projectile, playerPos.position, Quaternion.Euler(aimingAt.x, aimingAt.y, 0));
-                    shot.GetComponent<SpriteRenderer>().material.SetColor("_Color", bullet);
+                    GameObject shot = Instantiate(projectile, playerPos.position, Quaternion.identity);
+                    shot.GetComponent<SpriteRenderer>().color = bulletColor;
                     shot.GetComponent<Projectile>().fall = false;
+                    shot.GetComponent<Projectile>().target = aimingAt;
                 }
                 aimingAt = Vector2.zero;
                 aiming = false;
@@ -53,6 +54,21 @@ public class Shooting : MonoBehaviour
             // Holding aimstick and actively aiming
             aiming = true;
             aimingAt = aimStick.Direction;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Projectile"))
+        {
+            Projectile projectile = collision.GetComponent<Projectile>();
+            // Projectile can be picked up
+            if (projectile.fall)
+            {
+                // Check if magazine is full
+                if(mag.reload(projectile.GetComponent<SpriteRenderer>().color))
+                    Destroy(collision.gameObject);
+            }
         }
     }
 }
